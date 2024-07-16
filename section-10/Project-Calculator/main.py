@@ -58,5 +58,3 @@ def calculator():
             print("\033[1;31mOperação inválida.\033[m")
 
 calculator()
-
-
