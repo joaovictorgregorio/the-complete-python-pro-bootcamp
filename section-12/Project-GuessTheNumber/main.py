@@ -23,9 +23,9 @@ def menu():
     elif choose_difficulty == "DIFICIL":
         game(attempts=HARD_LEVEL_ATTEMPTS)
     else:
-        print("Opção inválida.")
+        print("\033[1;31mOpção inválida!!!\033[m")
         time.sleep(1)
-        print("Voltando para o menu")
+        print("Voltando para o menu...")
         time.sleep(1)
         return menu()
     
