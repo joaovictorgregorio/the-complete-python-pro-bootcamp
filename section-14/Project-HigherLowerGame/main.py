@@ -1,56 +1,52 @@
 import art, game_data, random, time, os
 
-def random_selection():
-    random_selection_one = random.choice(game_data.data)
-    key_name_one = random_selection_one["name"]
-    key_description_one = random_selection_one["description"]
-    key_country_one = random_selection_one["country"]
+os.system("cls")
 
-    print(f"\n  Compare A: {key_name_one}, um(a) {key_description_one}, do(a) {key_country_one}", end="")
-
-    print(art.vs)
-    random_selection_two = random.choice(game_data.data)
-    key_name_two = random_selection_two["name"]
-    key_description_two = random_selection_two["description"]
-    key_country_two = random_selection_two["country"]
-
-    print(f"  Contra B: {key_name_two}, um(a) {key_description_two}, do(a) {key_country_two}")
-
-
-
-def menu():
-    os.system("cls")
-
+def screen():
     print(art.logo)
-    random_selection_one = random.choice(game_data.data)
-    key_name_one = random_selection_one["name"]
-    key_description_one = random_selection_one["description"]
-    key_country_one = random_selection_one["country"]
-
-    print(f"\n  Compare A: \033[1;33m{key_name_one}\033[m, um(a) {key_description_one}, do(a) {key_country_one}", end="")
-
-    print(art.vs)
-    random_selection_two = random.choice(game_data.data)
-    key_name_two = random_selection_two["name"]
-    key_description_two = random_selection_two["description"]
-    key_country_two = random_selection_two["country"]
     
-    print(f"  Contra B: \033[1;33m{key_name_two}\033[m, um(a) {key_description_two}, do(a) {key_country_two}")
+    higher_lower_game()
 
-    more_followers = input("\nQuem tem mais seguidores? Digite 'A' ou 'B': ").upper()
 
-    if random_selection_one["follower_count"] > random_selection_two["follower_count"] and more_followers == "A":
-        print("Você acertou!")
-        print(random_selection_one)
-        print(random_selection_two)
-    elif random_selection_one["follower_count"] < random_selection_two["follower_count"] and more_followers == "B":
-        print("Você acertou!")
-        print(random_selection_two)
-        print(random_selection_one)
+def check_answer(guess, a_follower_count, b_follower_count):
+    if a_follower_count > b_follower_count:
+        return guess == "a"
     else:
-        print("Você errou!")
-        print(random_selection_one)
-        print(random_selection_two)
+        return guess == "b"
 
-menu()
+def higher_lower_game():
+    score = 0
+    game_should_continue = True
+    account_b = random.choice(game_data.data)
+
+    while game_should_continue:
+        account_a = account_b
+        account_b = random.choice(game_data.data)
+
+        if account_a == account_b:
+            account_b = random.choice(game_data.data)
+
+        print(f"  Compare A: \033[1;33m{account_a['name']}\033[m, a {account_a['description']}, de {account_a['country']}")
+        print(art.vs)
+        print(f"  Contra B: \033[1;33m{account_b['name']}\033[m, a {account_b['description']}, de {account_b['country']}")
+
+        guess = input("Quem tem mais seguidores nas redes sociais? Digite 'A' ou 'B': ").lower()
+
+        a_follower_count = account_a["follower_count"]
+        b_follower_count = account_b["follower_count"]
+
+        is_correct = check_answer(guess, a_follower_count, b_follower_count)
+
+        os.system("cls")
+        print(art.logo)
+
+        if is_correct:
+            score += 1
+            print(f" \033[1;32mVocê acertou\033[m, sua pontuação atual: \033[1;33m{score}\033[m")
+
+        else:
+            game_should_continue = False
+            print(f" Desculpe, você errou. Seu score final é de: {score}")
+    
+screen()
 
