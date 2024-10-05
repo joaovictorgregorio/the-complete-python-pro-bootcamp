@@ -24,14 +24,26 @@ class Snake():
 
     def create_snake(self):
         """
-        Cria a cobra com três quadrantes iniciais na tela
+        Cria a cobra
         """
         for position in STARTING_POSITIONS:
-            new_segment = Turtle(shape="square")  # Cria um novo quadrante
-            new_segment.color("white")  # Cor do quadrante
-            new_segment.penup()  # Remove o tracejado da linha quando se move
-            new_segment.goto(position)  # Adiciona novos quadrantes a tela
-            self.segments.append(new_segment)
+            self.add_segment(position)  # Adiciona um novo quadrante à cobra
+
+    def add_segment(self, position):
+        """
+        Adiciona um novo quadrante à cobra
+        """
+        new_segment = Turtle(shape="square")  # Cria um novo quadrante
+        new_segment.color("pink")  # Cor do quadrante
+        new_segment.penup()  # Remove o tracejado da linha quando se move
+        new_segment.goto(position)  # Adiciona novos quadrantes a tela
+        self.segments.append(new_segment)
+
+    def extend(self):
+        """
+        Adiciona um novo quadrante à cobra
+        """
+        self.add_segment(self.segments[-1].position())
 
     def move(self):
         """
