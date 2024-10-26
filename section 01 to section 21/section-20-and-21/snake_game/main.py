@@ -34,7 +34,7 @@ while game_is_on:
         food.refresh()  # Move a comida para outra posição
         snake.extend()  # Adiciona um novo quadrante à cobra
         scoreboard.increase_score()  # Incrementa a pontuação
-
+    
     """ Detectar a colisão com a parede """
     if (snake.head.xcor() > 595 or snake.head.xcor() < -595 or
             snake.head.ycor() > 395 or snake.head.ycor() < -395):

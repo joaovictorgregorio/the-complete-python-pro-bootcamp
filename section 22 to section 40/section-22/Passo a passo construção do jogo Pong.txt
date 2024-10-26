@@ -1,0 +1,16 @@
+Componentes que poderiam ser separados na minha classe do game Pong
+
+O objeto em movimento que seria o deslocamento do quadrante
+As duas peças laterais que movimentam no eixo y para poder rebater a bola
+A divisão central da tela para definir o lado da quadra que a bola está no momento
+E o score de pontuação
+
+O projeto Pong foi dividido em 8 partes pela Dr. Angela
+	Criação da tela
+	Criação e movimentação da raquete
+	Criação da outra raquete para dois jogadores
+	Criação da bola e desenvolvimento da movimentação dela
+	Detecção da colisão da bola com a parede e ricochetear quando detectar a colisão com a raquete
+	Detecção a colisão para ressuscitá-lo
+	Detecção de quando a raquete falhar a bola
+	Manter a pontuação usando um marcador
